@@ -1,14 +1,25 @@
 package com.aman.ChallengeApp;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Challenge {
+    @Id
     private Long id;
+//    @Column(name = "challengeMonth")
     private String month;
     private String description;
 
-    public Challenge(long id, String month, String description) {
+    public Challenge(Long id, String month, String description) {
         this.id = id;
         this.month = month;
         this.description = description;
+    }
+
+    public Challenge() {
+
     }
 
     public Long getId() {
