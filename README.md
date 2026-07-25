@@ -1,46 +1,38 @@
 # 📅 Monthly Challenge App API
 
-A robust **RESTful CRUD API** built using **Spring Boot**, **Spring Data JPA**, and **MySQL/H2 Database**.  
-This application allows users to create, retrieve, update, and track monthly personal and professional challenges efficiently.
+A robust **RESTful CRUD API** built with **Spring Boot** and **Spring Data JPA**.  
+This backend service enables users to track, create, update, retrieve, and delete monthly challenges with distinct month-wise lookups and RESTful response handling.
 
 ---
 
-## 🚀 Features
-
-- **Create Challenge:** Add a new monthly challenge with month-wise indexing and detailed descriptions.
-- **Fetch Challenges:** Retrieve all challenges or fetch a specific challenge by unique `ID` or `month`.
-- **Update Challenge:** Modify existing challenge details dynamically.
-- **Delete Challenge:** Remove completed or obsolete challenge records.
-- **RESTful Architecture:** Follows standard HTTP status codes (`200 OK`, `201 Created`, `404 Not Found`).
-
----
-
-## 🛠️ Tech Stack
+## 🛠️ Tech Stack & Architecture
 
 - **Language:** Java 17+
-- **Framework:** Spring Boot
-- **Database:** MySQL / H2 In-Memory Database
-- **ORM / Persistence:** Spring Data JPA / Hibernate
+- **Framework:** Spring Boot (`Spring Web`, `Spring Data JPA`)
+- **Architecture:** Controller-Service-Repository Pattern (Loose Coupling via Constructor Injection)
+- **Database:** H2 / MySQL
 - **Build Tool:** Maven
 - **API Testing:** Postman / cURL
 
 ---
 
-## 📡 API Endpoints
+## 📡 API Endpoints & Usage
 
-| Method | Endpoint | Description |
-| :--- | :--- | :--- |
-| **GET** | `/challenges` | Fetch all monthly challenges |
-| **GET** | `/challenges/{id}` | Fetch a specific challenge by ID |
-| **POST** | `/challenges` | Add a new challenge |
-| **PUT** | `/challenges/{id}` | Update an existing challenge |
-| **DELETE** | `/challenges/{id}` | Delete a challenge by ID |
+| HTTP Method | Endpoint | Description | Success Status | Error Status |
+| :--- | :--- | :--- | :--- | :--- |
+| **GET** | `/challenges` | Fetch all challenges | `200 OK` | — |
+| **POST** | `/challenges` | Add a new challenge | `201 CREATED` / `200 OK` | `404 NOT FOUND` |
+| **GET** | `/challenges/{month}` | Fetch challenge by month (e.g., `/challenges/January`) | `200 OK` | `404 NOT FOUND` |
+| **PUT** | `/challenges/{id}` | Update challenge by ID | `200 OK` | `404 NOT FOUND` |
+| **DELETE** | `/challenges/{id}` | Delete challenge by ID | `200 OK` | `404 NOT FOUND` |
 
 ---
 
-## ⚙️ Getting Started
+## 📝 Sample JSON Request Bodies
 
-### Prerequisites
-- JDK 17 or higher
-- Maven installed
-- MySQL Server (optional if using H2)
+### 1. Create a Challenge (`POST /challenges`)
+```json
+{
+  "month": "January",
+  "description": "Learn Spring Boot Fundamentals"
+}
